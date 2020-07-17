@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+
+    <h2> Lista dos itens da OLX inseridos</h2>
+
+    <ul class="item-list">
+        {% for olx_item_for in olx_items %}
+        <li class="task-item">
+            <span><a href="#">{{ olx_item_for.title }}</span>
+            <span><i class="fas fa-trash"></i> </span>
+            <span><i class="fas fa-edit"></i> </span>
+        </li>
+
+        {% endfor %}
+    </ul>
+
+
+</div>
+
+
+{% endblock %}

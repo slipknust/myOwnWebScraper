@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Own Web Scrapper©</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="old stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="new stylesheet" href="{% static "css/style.css" %}">
+</head>
+<body>
+
+<nav class="black">
+    <div class="container nav-wrapper">
+        <a href="/" class="brand-logo">myOwnWebScrapper©</a>
+        <ul id="nav-mobile" class="right">
+            <li><a href="/">Home</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+    {% block content %}
+    {% endblock content %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+</html>
