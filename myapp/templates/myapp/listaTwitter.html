@@ -6,24 +6,28 @@
 
 <div class="container">
 
-    <h2> Lista dos itens do Twitter inseridos</h2>
+    <h2> Lista dos Tweets do @{{ tt_user }}</h2>
 
-    <ul class="item-list">
-        {% for tt_item_for in tt_items %}
-        <li class="task-item">
-            <span><a href="#">{{ tt_item_for.title }}</span>
-            <span><i class="fas fa-trash"></i> </span>
-            <span><i class="fas fa-edit"></i> </span>
-        </li>
-
+    <table>
+        <thead>
+          <tr>
+              <th>Tweet</th>
+              <th>Retweet</th>
+              <th>Likes</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for tweet in tweet_obj %}
+          <tr>
+            <td>{{ tweet.text }}</td>
+            <td>{{ tweet.retweets }}</td>
+            <td>{{ tweet.likes }}</td>
+          </tr>
         {% endfor %}
-    </ul>
-
+        </tbody>
+      </table>
 
 </div>
-
-
-
 
 
 

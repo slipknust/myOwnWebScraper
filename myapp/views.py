@@ -5,6 +5,7 @@ from .models import Item, OlxItem, TwitterItem
 from bs4 import BeautifulSoup
 from . import models
 from requests.compat import quote_plus
+from .TtScraper import TtScraper
 
 # Create your views here.
 
@@ -58,7 +59,7 @@ def listaOlx(request):
     olx_query ='https://rj.olx.com.br/?q=aluguel'
 
     olx_items_select = OlxItem.objects.all()
-    
+
 
     stuff_from_frontend = {
         'olx_items': olx_items_select,
@@ -67,32 +68,40 @@ def listaOlx(request):
     return render(request, 'myapp/listaOlx.html', stuff_from_frontend)
 
 def listaTwitter(request):
-    #search = request.POST.get('search')
-    #tt_search = request.POST.get('')
-    tt_query = 'https://twitter.com/search?q=brasil&src=typed_query'
 
-    #response = requests.get('https://rio.craigslist.org/search/hhh?query=copacabana&sort=rel')
     response = requests.get('https://twitter.com/search?q=brasil&src=typed_query')
     tt_data = response.text
 
     tt_data_soup = BeautifulSoup(tt_data, features='html.parser')
 
     tweet_titles = tt_data_soup.find_all('a', {'class': 'css-4rbku5'})
-    #tweet_titles = tt_data_soup.find_all('a', {'class': 'result-title'})
 
     print(tweet_titles)
+    ttscp = TtScraper('Mario', 'MauroWebeer')
 
-    #response = requests.get('https://rio.craigslist.org/search/hhh?query=copacabana&sort=rel')
-    #data = response.text
-    #soup = BeautifulSoup(data, features='html.parser')
-    #post_titles = soup.find_all('a', {'class': 'result-title'})
-    #print(post_titles[0].get('href'))
+    # teste comeca aqui
 
+    print("user: " + ttscp.user + "  nomeDoObjeto:  " + ttscp.title)
+    print(ttscp.df)
+    for cols in ttscp.df.columns:
+        print(cols)
 
+    itter = ttscp.df.itertuples
+
+    print("aqui esta o itttteer:  " + str(itter) + " e aqui finalizaaaa")
+
+    print(ttscp.df.loc[0,'text'])
+
+    for dftest in ttscp.df.head().itertuples():
+        print(dftest.text)
+
+    #e termina aqui!!!
     tt_items_select = TwitterItem.objects.all()
 
     stuff_from_frontend = {
         'tt_items': tt_items_select,
+        'tweet_obj': ttscp.df.head().itertuples(),
+        'tt_user': ttscp.user,
     }
 
     return render(request, 'myapp/listaTwitter.html', stuff_from_frontend)
