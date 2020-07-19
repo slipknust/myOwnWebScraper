@@ -1,5 +1,5 @@
 import requests
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ItemForm, OlxItemForm, PerfilForm
 from .models import Item, OlxItem, TwitterItem, Perfil
 from bs4 import BeautifulSoup
@@ -118,12 +118,23 @@ def cadastrarPerfil(request):
 
     else:
         formPerfil = PerfilForm()
-        perfil_select = Perfil.objects.all()
         stuff_from_frontend = {
             'form' : formPerfil,
-            'perfis' : perfil_select,
         }
 
     return render(request, 'myapp/cadastrarPerfil.html', stuff_from_frontend)
 
 
+def listaPerfil(request):
+    perfil_select = Perfil.objects.all()
+    stuff_from_frontend = {
+        'perfis': perfil_select,
+    }
+
+    return render(request, 'myapp/listaPerfil.html', stuff_from_frontend)
+
+def perfilView(request, id):
+
+    perfil = get_object_or_404(Perfil, pk=id)
+
+    return render(request, 'myapp/perfil.html', {'perfil' : perfil})

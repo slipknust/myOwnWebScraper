@@ -24,4 +24,6 @@ urlpatterns = [
     path('listaOlx', views.listaOlx, name="listaOlx"),
     path('listaTwitter', views.listaTwitter, name="listaTwitter"),
     path('cadastrarPerfil', views.cadastrarPerfil, name="cadastrarPerfil"),
+    path('listaPerfil', views.listaPerfil, name="listaPerfil"),
+    path('listaPerfil/perfil/<int:id>', views.perfilView, name="perfilView"),
 ]
