@@ -23,4 +23,5 @@ urlpatterns = [
     path('new_olx_item', views.new_olx_item, name="new_olx_item"),
     path('listaOlx', views.listaOlx, name="listaOlx"),
     path('listaTwitter', views.listaTwitter, name="listaTwitter"),
+    path('cadastrarPerfil', views.cadastrarPerfil, name="cadastrarPerfil"),
 ]

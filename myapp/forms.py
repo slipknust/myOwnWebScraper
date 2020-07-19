@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Item,OlxItem
+from .models import Item,OlxItem, Perfil
 
 class ItemForm(forms.ModelForm):
 
@@ -13,3 +13,9 @@ class OlxItemForm(forms.ModelForm):
     class Meta:
         model = OlxItem
         fields = ('title', 'description')
+
+class PerfilForm(forms.ModelForm):
+
+    class Meta:
+        model = Perfil
+        fields = ('nome',)

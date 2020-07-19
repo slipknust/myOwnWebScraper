@@ -1,0 +1,24 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+<h2>Tela de cadastro de perfis!</h2>
+
+    <form action="{% url 'cadastrarPerfil' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn waves-effect waves-light" type="submit" name="action">
+            Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+
+
+</div>
+
+
+{% endblock %}

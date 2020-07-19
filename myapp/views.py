@@ -1,7 +1,7 @@
 import requests
 from django.shortcuts import render, redirect
-from .forms import ItemForm, OlxItemForm
-from .models import Item, OlxItem, TwitterItem
+from .forms import ItemForm, OlxItemForm, PerfilForm
+from .models import Item, OlxItem, TwitterItem, Perfil
 from bs4 import BeautifulSoup
 from . import models
 from requests.compat import quote_plus
@@ -105,3 +105,25 @@ def listaTwitter(request):
     }
 
     return render(request, 'myapp/listaTwitter.html', stuff_from_frontend)
+
+
+def cadastrarPerfil(request):
+
+    if request.method == 'POST':
+        formPerfil = PerfilForm(request.POST)
+
+        if formPerfil.is_valid():
+            itemPerfil = formPerfil.save()
+            return redirect('/')
+
+    else:
+        formPerfil = PerfilForm()
+        perfil_select = Perfil.objects.all()
+        stuff_from_frontend = {
+            'form' : formPerfil,
+            'perfis' : perfil_select,
+        }
+
+    return render(request, 'myapp/cadastrarPerfil.html', stuff_from_frontend)
+
+
